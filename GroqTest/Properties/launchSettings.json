@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GroqTest": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
