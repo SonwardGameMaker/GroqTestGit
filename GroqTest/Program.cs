@@ -12,7 +12,7 @@ class Program
         GroqChatHistory groqMessages = new GroqChatHistory { BotInstructions.DefaultInstructions.BaseInstructions };
         UserCurrentData userCurrentData = new UserCurrentData("Roman");
 
-        Console.WriteLine($"Groq reach: {groqService.TestGroqReachabilityAsync() }");
+        Console.WriteLine($"Groq reach: {await groqService.TestGroqReachabilityAsync() }");
 
         //Console.WriteLine("Without history //----------------------------------------------------------------------");
         //string message1 = "Hello";
