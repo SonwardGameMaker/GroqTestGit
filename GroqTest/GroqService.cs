@@ -52,6 +52,20 @@ internal class GroqService
         }
     }
 
+    public async Task<string> TestGroqReachabilityAsync()
+    {
+        try
+        {
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("https://api.groq.com");
+            return $"Status: {response.StatusCode}";
+        }
+        catch (Exception ex)
+        {
+            return $"FAILED: {ex.Message}\nINNER: {ex.InnerException?.Message}";
+        }
+    }
+
     public GroqChatHistory CreateChatHistory()
         => new GroqChatHistory { _instructions.BaseInstructions };
 
