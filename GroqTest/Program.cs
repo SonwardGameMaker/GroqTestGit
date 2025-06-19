@@ -23,12 +23,13 @@ class Program
         Console.WriteLine("Groq response:");
         Console.WriteLine(response1);
 
-        //Console.WriteLine("With history //----------------------------------------------------------------------");
-        //string message2 = "Hello, did I Confirmed my passport?";
-        //Console.WriteLine($"User prompt: {message2}");
-        //var response2 = await groqService.AskAsync(message2, userCurrentData, groqMessages);
-        //Console.WriteLine("Groq response:");
-        //Console.WriteLine(response2);
+        Console.WriteLine("With history //----------------------------------------------------------------------");
+        string message2 = "Hello, did I Confirmed my passport?";
+        Console.WriteLine($"User prompt: {message2}");
+        var response2 = await groqService.AskAsync(message2, userCurrentData, groqMessages);
+        Console.WriteLine("Groq response:");
+        Console.WriteLine(response2);
+
         Console.WriteLine("Press any key to procced");
         Console.ReadKey();
     }
