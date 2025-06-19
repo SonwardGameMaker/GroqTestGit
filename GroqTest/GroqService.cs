@@ -1,5 +1,6 @@
 ﻿using GroqNet;
 using GroqNet.ChatCompletions;
+using System.Text;
 
 internal class GroqService
 {
@@ -65,6 +66,37 @@ internal class GroqService
             return $"FAILED: {ex.Message}\nINNER: {ex.InnerException?.Message}";
         }
     }
+
+    public async Task<string> TestGroqPostAsync(string apiKey)
+    {
+        try
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
+
+            var content = new StringContent(
+                """
+            {
+              "model": "llama3-8b-8192",
+              "messages": [{"role": "user", "content": "Hello"}]
+            }
+            """,
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var response = await client.PostAsync("https://api.groq.com/openai/v1/chat/completions", content);
+            var body = await response.Content.ReadAsStringAsync();
+
+            return $"Status: {response.StatusCode}\nBody: {body}";
+        }
+        catch (Exception ex)
+        {
+            return $"FAILED: {ex.Message}\nINNER: {ex.InnerException?.Message}";
+        }
+    }
+
 
     public GroqChatHistory CreateChatHistory()
         => new GroqChatHistory { _instructions.BaseInstructions };
