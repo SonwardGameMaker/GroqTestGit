@@ -29,8 +29,5 @@ class Program
         var response2 = await groqService.AskAsync(message2, userCurrentData, groqMessages);
         Console.WriteLine("Groq response:");
         Console.WriteLine(response2);
-
-        Console.WriteLine("Press any key to procced");
-        Console.ReadKey();
     }
 }
